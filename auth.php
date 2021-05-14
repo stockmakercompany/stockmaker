@@ -13,7 +13,7 @@ if(empty($errors)){
     //Update Sign in time
      updateLastLogIn($user_id);
      $session->msg("s", "Bienvenido a Test_StockMaker.");
-     redirect('menu.html',false);
+     redirect('home.php',false);
 
   } else {
     $session->msg("d", "Nombre de usuario y/o contraseña incorrecto.");

@@ -7,7 +7,7 @@ body{
   height: 100%;
   width: 100%;
 }a{
-  color #777;
+  color: #777;
   text-decoration: none;
 }.padding-top{
   padding-top: 20px;
@@ -43,40 +43,7 @@ body{
 .bg-red{
   background-color: #FF7857;
 }
-.panel-default >.panel-heading{
-  background-color: #f5f5f5;
-  border-bottom: 2px solid #3498DB;
-  font-size: 15px;
-  text-transform: uppercase;
-  letter-spacing: .5px;
-  padding: 15px;
-}.panel-box{
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  border: none;
-}.panel-value{
-  width: 60%;
-}.panel-icon{
-  padding: 30px;
-  width: 40%;
-  border-radius: 0;
-}.panel-icon{
-  -webkit-border-radius: 3px 0 0 3px;
-  -moz-border-radius: 3px 0 0 3px;
-  border-radius: 3px 0 0 3px;
-}.panel-value{
-  -webkit-border-radius: 0 3px 3px 0;
-  -moz-border-radius: 0 3px 3px 0;
-  border-radius: 0 3px 3px 0;
-}.panel-value h2{
-  margin-top: 30px;
-}
-.panel-icon i{
-  line-height:65px;
-  font-size: 40px;
-  color: #fff;
-}
+
 #header {
   position: fixed;
   z-index: 99;
@@ -303,4 +270,72 @@ input[type=file]{
 }img.img-size-2{
   width: 125px;
   height: 125px;
+}
+div.centrador{
+	position: absolute;
+	top: 35%;
+	left: 39%;  
+}
+img.icons{
+	display: block;
+	margin:10px auto;
+	background-color: rgba(255,255,255,.15);
+  width: 140px;
+ padding: 3%;
+	-webkit-border-radius: 48%;
+	-webkit-box-shadow: 0px 0px 0px 30px rgba(255,255,255,0);
+	-webkit-transition:box-shadow .4s;
+}
+div.centrador{
+	position: absolute;
+	top: 35%;
+	left: 39%;  
+}
+
+div.contenedor{
+	width: 200px;
+	height: 230px;
+	-webkit-transition: height .4s;
+	display: inline-block;
+}
+
+div#uno{
+	background-color: #2780F9;
+	display: inline-block;
+	text-align: center;
+}
+
+div#dos{
+	background-color:#F74747 ;
+	display: inline-block;
+	text-align: center;
+}
+
+div#tres{
+	background-color: #5EC45E;
+	display: inline-block;
+	text-align: center;
+}
+
+div#cuatro{
+	background-color:#F3E162 ;
+	display: inline-block;
+	text-align: center;
+}
+
+a.texto{
+	font-size: 1.2em;
+	color:black;
+	padding-top:10px;
+	opacity: .6;
+	-webkit-transition: padding-top .4s;
+}
+
+div.contenedor:hover{
+	height:25px;
+}
+
+div.contenedor:hover p.texto{
+	padding-top: 30px;
+	opacity: 1;
 }

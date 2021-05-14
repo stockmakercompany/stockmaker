@@ -65,17 +65,16 @@ div#cuatro{
 	text-align: center;
 }
 
-img.icon{
+img.icons{
 	display: block;
-	margin:50px auto;
+	margin:10px auto;
 	background-color: rgba(255,255,255,.15);
-	width:40px;
-	padding:20px;
-	-webkit-border-radius: 50%;
+  width: 140px;
+ padding: 3%;
+	-webkit-border-radius: 48%;
 	-webkit-box-shadow: 0px 0px 0px 30px rgba(255,255,255,0);
 	-webkit-transition:box-shadow .4s;
 }
-
 
 a.texto{
 	font-size: 1.2em;
@@ -93,68 +92,6 @@ div.contenedor:hover p.texto{
 	padding-top: 30px;
 	opacity: 1;
 }
-
-
-
-nav {
-	margin: 27px auto 0;
-	float: right;
-	position: relative;
-	width: 870px;
-	height: 50px;
-	background-color: white;
-	border-radius: 8px;
-	font-size: 0;
-}
-nav a {
-	line-height: 50px;
-	height: 100%;
-	font-size: 15px;
-	display: inline-block;
-	position: relative;
-	z-index: 1;
-	text-decoration: none;
-	text-transform: uppercase;
-	text-align: center;
-	color: black;
-	cursor: pointer;
-}
-nav .animation {
-	position: absolute;
-	height: 100%;
-	top: 0;
-	z-index: 0;
-	transition: all .5s ease 0s;
-	border-radius: 8px;
-}
-a:nth-child(1) {
-	width: 100px;
-	position: relative;
-}
-a:nth-child(2) {
-	width: 110px;
-}
-nav .start-home, a:nth-child(1):hover~.animation {
-	width: 100px;
-	left: 0;
-	background-color: #1abc9c;
-}
-nav .start-about, a:nth-child(2):hover~.animation {
-	width: 110px;
-	left: 100px;
-	background-color: #e74c3c;
-}
-
-h1 {
-	text-align: center;
-	margin: 40px 0 40px;
-	text-align: center;
-	font-size: 30px;
-	color: #ecf0f1;
-	text-shadow: 2px 2px 4px #000000;
-	font-family: 'Cherry Swash', cursive;
-}
-
 
 
 
