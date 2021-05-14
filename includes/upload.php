@@ -110,9 +110,7 @@ class  Media {
     }
 
   }
-  /*--------------------------------------------------------------*/
-  /* Function for Process user image
-  /*--------------------------------------------------------------*/
+  
  public function process_user($id){
 
     if(!empty($this->errors)){
@@ -149,9 +147,7 @@ class  Media {
        }
     }
  }
- /*--------------------------------------------------------------*/
- /* Function for Update user image
- /*--------------------------------------------------------------*/
+
   private function update_userImg($id){
      global $db;
       $sql = "UPDATE users SET";
@@ -161,9 +157,7 @@ class  Media {
       return ($result && $db->affected_rows() === 1 ? true : false);
 
    }
- /*--------------------------------------------------------------*/
- /* Function for Delete old image
- /*--------------------------------------------------------------*/
+
   public function user_image_destroy($id){
      $image = find_by_id('users',$id);
      if($image['image'] === 'no_image.jpg')
@@ -175,9 +169,7 @@ class  Media {
      }
 
    }
-/*--------------------------------------------------------------*/
-/* Function for insert media image
-/*--------------------------------------------------------------*/
+
   private function insert_media(){
 
          global $db;
@@ -190,9 +182,7 @@ class  Media {
        return ($db->query($sql) ? true : false);
 
   }
-/*--------------------------------------------------------------*/
-/* Function for Delete media by id
-/*--------------------------------------------------------------*/
+
    public function media_destroy($id,$file_name){
      $this->fileName = $file_name;
      if(empty($this->fileName)){
