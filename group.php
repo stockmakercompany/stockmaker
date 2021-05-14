@@ -17,7 +17,7 @@
     <div class="panel-heading clearfix">
       <strong>
         <span class="glyphicon glyphicon-th"></span>
-        <span>Grupos</span>
+        <span>Roles</span>
      </strong>
        <a href="add_group.php" class="btn btn-info pull-right btn-sm"> Agregar grupo</a>
     </div>
@@ -26,7 +26,7 @@
         <thead>
           <tr>
             <th class="text-center" style="width: 50px;">#</th>
-            <th>Nombre del grupo</th>
+            <th>Nombre del Rol</th>
             <th class="text-center" style="width: 20%;">Nivel del grupo</th>
             <th class="text-center" style="width: 15%;">Estado</th>
             <th class="text-center" style="width: 100px;">Acciones</th>

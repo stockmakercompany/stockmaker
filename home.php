@@ -6,7 +6,7 @@
 <?php include_once('layouts/header.php'); ?>
 <div class="row">
   <div class="col-md-12">
-    <?php echo display_msg($msg); ?>
+   
   </div>
   <link rel="stylesheet" href="assets/css/index_style.css">
 	<div class="centrador">

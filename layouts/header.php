@@ -23,6 +23,9 @@
       <div class="header-date pull-left">
         <strong><?php echo date("d/m/Y  g:i a");?></strong>
       </div>
+      <a href="home.php" title="Menu">
+                     <i class="glyphicon glyphicon-home"></i>
+                      Menu</a>
       <div class="pull-right clearfix">
         <ul class="info-menu list-inline list-unstyled">
           <li class="profile">
@@ -33,28 +36,17 @@
             <ul class="dropdown-menu">
               <li>
                   <a href="profile.php?id=<?php echo (int)$user['id'];?>">
-                      <i class="glyphicon glyphicon-user"></i>
+                      <i class="glyphicon glyphicon-cog"></i>
                       Perfil
                   </a>
               </li>
               <li>
                   <a href="users.php?id=<?php echo (int)$user['id'];?>">
-                      <i class="glyphicon glyphicon-plus"></i>
+                      <i class="glyphicon glyphicon-user"></i>
                       Usuarios
                   </a>
               </li>
-             <li>
-                 <a href="edit_account.php" title="edit account">
-                     <i class="glyphicon glyphicon-cog"></i>
-                     Configuración
-                 </a>
-             </li>
-             <li>
-                 <a href="home.php" title="Menu">
-                     <i class="glyphicon glyphicon-home"></i>
-                     Menu
-                 </a>
-             </li>
+             
              <li class="last">
                  <a href="logout.php">
                      <i class="glyphicon glyphicon-off"></i>
@@ -68,22 +60,7 @@
      </div>
     </header>
     
-  <!--   <div class="sidebar"> -->
-      <?php //if($user['user_level'] === '1'): ?>
-        <!-- admin menu -->
-      <?php //include_once('admin_menu.php');?>
 
-      <?php //elseif($user['user_level'] === '2'): ?>
-        <!-- Special user -->
-      <?php //include_once('special_menu.php');?>
-
-      <?php //elseif($user['user_level'] === '3'): ?>
-        <!-- User menu -->
-      <?php //include_once('user_menu.php');?>
-
-      <?php //endif;?>
-
-<!--   </div> -->
 <?php endif;?>
 
 <div class="page">
