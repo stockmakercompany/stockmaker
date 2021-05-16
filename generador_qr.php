@@ -9,6 +9,12 @@
 <head>
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/qrcode.js"></script>
+	<script>
+		function goback() {
+            window.location.href = document.referrer;
+ }
+	</script>
+	
 </head>
 <div class="row">
      <div class="col-md-12">
@@ -16,15 +22,20 @@
      </div>
     <div class="col-md-12">
       <div class="panel panel-default">
+		<br>
+	  <p>
+     <script>
+              document.write(document.referrer);
+      </script>
+</p>
     	<form onsubmit="generate();return false;">
-					<input type="text" id="qr" name="">
+					<input type="text" id="qr" name=""> <button onclick="generate();return false;" class="btn btn-primary" >Generar QR</button>	
 				</form>
-				<a href="product.php" class="btn btn-primary">Invetario</a>
+				
 
+				
 				<br>
 				<br>
-
-
 				<div id="qrResult" style="height: 300px;width: 300px">
 					
 				</div>
@@ -47,7 +58,11 @@
 					}
 
 				</script>
+				<br>
+				<button onclick="goback()" class="btn btn-primary"  >Atrás</button>
+			  	<br>
       </div>
+
     </div>
   </div>
   

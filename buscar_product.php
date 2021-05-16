@@ -3,7 +3,7 @@
   require_once('includes/load.php');
   // Checkin What level user has permission to view this page
    page_require_level(3);
-  $products = join_product_table();
+   $conex = mysqli_connect("localhost","root","","stockmaker_inv");
 ?>
 <?php include_once('layouts/header.php'); ?>
 <div class="row">
@@ -35,10 +35,7 @@
            <a href="categorie.php" class="btn btn-primary">Pocisicion</a>
          </div>
         </div>
-
-        <div class="panel-body">
-          <table class="table table-bordered">
-          <?php
+        <?php
               $sql_registe= mysqli_query($conection,"SELECT COUNT(*) as total_product FROM products 
                                                       WHERE (name LIKE'%$busqueda%')");
 
@@ -46,6 +43,10 @@
               WHERE (p.name LIKE'%$busqueda%')");
 
               ?>
+
+        <div class="panel-body">
+          <table class="table table-bordered">
+
             <thead>
               <tr>
                 <th> Nombre del producto </th>
