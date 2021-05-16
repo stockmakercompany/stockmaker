@@ -5,4 +5,5 @@
   define( 'DB_PASS', '' );             // Set database password
   define( 'DB_NAME', 'stockmaker_inv' );        // Set database name
 
+  $conex = mysqli_connect("localhost","root","","stockmaker_inv");
 ?>

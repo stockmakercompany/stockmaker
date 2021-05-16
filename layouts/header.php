@@ -7,7 +7,7 @@
            echo remove_junk($page_title);
             elseif(!empty($user))
            echo ucfirst($user['name']);
-            else echo "Sistema simple de inventario";?>
+            else echo "Sistema de Inventario";?>
     </title>
 	
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
@@ -18,14 +18,15 @@
   <body>
   <?php  if ($session->isUserLoggedIn(true)): ?>
     <header id="header">
-      <div class="logo pull-left"> Test-StockMaker </div>
+      <div class="logo pull-left" > 
+      <a href="home.php" title="Menu">
+                     <i class="glyphicon glyphicon-home" st></i>
+                      Menu</a>  </div>
       <div class="header-content">
       <div class="header-date pull-left">
-        <strong><?php echo date("d/m/Y  g:i a");?></strong>
+
       </div>
-      <a href="home.php" title="Menu">
-                     <i class="glyphicon glyphicon-home"></i>
-                      Menu</a>
+
       <div class="pull-right clearfix">
         <ul class="info-menu list-inline list-unstyled">
           <li class="profile">

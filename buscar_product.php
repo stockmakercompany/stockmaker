@@ -1,21 +1,31 @@
 <?php
-  $page_title = 'Lista de productos';
+  $page_title = 'Inventario';
   require_once('includes/load.php');
   // Checkin What level user has permission to view this page
    page_require_level(3);
   $products = join_product_table();
 ?>
-
 <?php include_once('layouts/header.php'); ?>
 <div class="row">
      <div class="col-md-12">
        <?php echo display_msg($msg); ?>
      </div>
+     <?php 
+
+
+        $busqueda = strtolower ($_REQUEST['busqueda']);
+          if(empty($busqueda))
+        {
+              header("location:product.php");
+        }
+
+        
+     ?>
     <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-heading clearfix" action="" method="get">
         <form action="buscar_product.php" method="get" class="form_search">
-          <input type="text" name="busqueda" id ="busqueda" placeholder="Buscar">
+          <input type="text" name="busqueda" id ="busqueda" placeholder="Buscar" value=" <?php echo $busqueda ?>">
           <input type="submit" value="Buscar" class="btn_search">
         </form>
          <div class="pull-right">
@@ -28,9 +38,16 @@
 
         <div class="panel-body">
           <table class="table table-bordered">
+          <?php
+              $sql_registe= mysqli_query($conection,"SELECT COUNT(*) as total_product FROM products 
+                                                      WHERE (name LIKE'%$busqueda%')");
+
+              $query = mysqli_query($conection,"SELECT id,name,quantity,buy_price,sale_price,media_id,pdate,c.name 
+              WHERE (p.name LIKE'%$busqueda%')");
+
+              ?>
             <thead>
               <tr>
-                
                 <th> Nombre del producto </th>
                 <th> Imagen</th>
                 <th class="text-center" style="width: 10%;"> Pocición </th>
@@ -40,6 +57,7 @@
                 <th class="text-center" style="width: 10%;"> Agregado </th>
                 <th class="text-center" style="width: 100px;"> Acciones </th>
               </tr>
+
             </thead>
             <tbody>
               <?php foreach ($products as $product):?>

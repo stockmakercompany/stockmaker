@@ -11,6 +11,12 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+
 
 
 CREATE TABLE `categories` (
@@ -18,18 +24,14 @@ CREATE TABLE `categories` (
   `name` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `categories`
---
+
 
 INSERT INTO `categories` (`id`, `name`) VALUES
 (1, 'Repuestos');
 
 -- --------------------------------------------------------
 
---
--- Estructura de tabla para la tabla `media`
---
+
 
 CREATE TABLE `media` (
   `id` int(11) UNSIGNED NOT NULL,
@@ -238,3 +240,27 @@ ALTER TABLE `users`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+CREATE TABLE historial (
+  id smallint(11) NOT NULL AUTO_INCREMENT,
+  product_name varchar(255) NOT NULL,
+  fecha_hora DATETIME NOT NULL,
+  tipo_accion enum('insert','update','delete') NOT NULL,
+  quantity smallint(6),
+  PRIMARY KEY (id)
+)
+
+CREATE TRIGGER products_insert
+  AFTER INSERT ON products FOR EACH ROW
+  INSERT INTO historial(id, product_name, tipo_accion, quantity, fecha_hora)
+  VALUES('', NEW.name, 'insert',  NEW.quantity, NOW())
+
+CREATE TRIGGER products_update
+  AFTER UPDATE ON products FOR EACH ROW
+  INSERT INTO historial(id, product_name, tipo_accion, quantity, fecha_hora)
+  VALUES('', NEW.name, 'update', NEW.quantity - OLD.quantity, NOW())
+
+CREATE TRIGGER products_delete
+  BEFORE DELETE ON products FOR EACH ROW
+  INSERT INTO historial(id, product_name, tipo_accion, quantity, fecha_hora)
+  VALUES('', OLD.name, 'delete', OLD.quantity, NOW())

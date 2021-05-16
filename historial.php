@@ -1,61 +1,56 @@
+
 <?php
-  $page_title = 'Agregar producto';
-  require_once('includes/load.php');
-  ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar usuario</title>
-    <style>
-        * {
-            padding: 0;
-            margin: 0;
-            font-family: century gothic;
-            color: #444
-        }
+    $page_title = 'Historial';
+    require_once('includes/load.php');
+    page_require_level(1);
+?>
+<?php include_once('layouts/header.php'); ?>
+<?php$conex = mysqli_connect("localhost","root","","stockmaker_inv");?>
+<div class="row">
+    <div class="col-md-12">
+    </div>
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            
+                            <th class="text-center" style="width: 10%;"> Nombre del producto </th>
+                            <th class="text-center" style="width: 10%;"> Hora y fecha </th>
+                            <th class="text-center" style="width: 10%;"> Tipo de acción </th>
+                            <th class="text-center" style="width: 10%;"> Cantidad </th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-        h1 {
-            padding: 12px;
-        }
-
-        div {
-            padding: 10px 20px;
-        }
-    </style>
-</head>
-<body>
-    <?php
-
-    
-    if ($conex) {
-        $consulta = "SELECT * FROM reg_posicionado";
-        $resultado = mysqli_query($conex,$consulta);
-        if ($resultado) {
-            while ($row = $resultado->fetch_array()) {
-            $id = $row['id'];
-            $fecha_hora = $row['fecha_hora'];
-            $tipo_accion = $row['tipo_accion'];
-            $cantidad_producto = $row['cantidad_producto'];
-            $posicionadoId = $row['posicionadoId'];
-            $usuarioId = $row['usuarioId'];
-            ?>
-            <div>
-                <p>
-                    <b>ID: </b> <?php echo $id ?><br>
-                    <b>Fecha y hora: </b> <?php echo $fecha_hora ?><br>
-                    <b>Tipo de acción: </b> <?php echo $tipo_accion ?><br>
-                    <b>Cantidad de productos: </b> <?php echo $cantidad_producto ?><br>
-                    <b>ID posición: </b> <?php echo $posicionadoId ?><br>
-                    <b>ID usuario: </b> <?php echo $usuarioId ?><br>
-                </p>
-            </div> 
-            <?php
-            }
-        }
-    }
-    ?>
-</body>
-</html>
+                            <?php
+                                if ($conex) {
+                                    $consulta = "SELECT * FROM historial";
+                                    $resultado = mysqli_query($conex,$consulta);
+                                    if ($resultado) {
+                                        while ($row = $resultado->fetch_array()) {
+                                            $product_name = $row['product_name'];
+                                            $fecha_hora = $row['fecha_hora'];
+                                            $tipo_accion = $row['tipo_accion'];
+                                            $quantity = $row['quantity'];
+                                            ?>
+                                            <tr>
+                                                <td class="text-center"> <?php echo $product_name ?></td>
+                                                <td class="text-center"> <?php echo $fecha_hora ?></td>
+                                                <td class="text-center"> <?php echo $tipo_accion ?></td>
+                                                <td class="text-center"> <?php echo $quantity ?></td>
+                                            </tr>
+                                            </br>
+                                            <?php
+                                        }
+                                    }
+                                }   
+                            ?>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

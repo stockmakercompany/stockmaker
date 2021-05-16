@@ -158,9 +158,7 @@ function tableExists($table){
             $session->msg('d','Por favor Iniciar sesión...');
             redirect('index.php', false);
 
-     elseif($login_level['group_status'] === '0'):
-           $session->msg('d','Este nivel de usaurio esta inactivo!');
-           redirect('home.php',false);
+
 
      elseif($current_user['user_level'] <= (int)$require_level):
               return true;
@@ -178,19 +176,22 @@ function tableExists($table){
     $sql  .=" FROM products p";
     $sql  .=" LEFT JOIN categories c ON c.id = p.categorie_id";
     $sql  .=" LEFT JOIN media m ON m.id = p.media_id";
+
     $sql  .=" ORDER BY p.id ASC";
     return find_by_sql($sql);
 
    }
 
 
+
    function find_product_by_title($product_name){
-     global $db;
-     $p_name = remove_junk($db->escape($product_name));
-     $sql = "SELECT name FROM products WHERE name like '%$p_name%' LIMIT 5";
-     $result = find_by_sql($sql);
-     return $result;
-   }
+    global $db;
+    $p_name = remove_junk($db->escape($product_name));
+    $sql = "SELECT name FROM products WHERE name like '%$p_name%' LIMIT 5";
+    $result = find_by_sql($sql);
+    return $result;
+  }
+
 
   function find_all_product_info_by_title($title){
     global $db;

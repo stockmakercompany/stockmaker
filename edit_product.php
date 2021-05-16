@@ -138,6 +138,7 @@ if(!$product){
                </div>
               </div>
               <button type="submit" name="product" class="btn btn-danger">Actualizar</button>
+              <a href="generador-qr.php" class="btn btn-primary">generar QR</a>
           </form>
          </div>
         </div>
