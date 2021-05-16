@@ -1,18 +1,18 @@
+
 <?php
-  $page_title = 'Lista de productos';
-  require_once('includes/load.php');
-   page_require_level(1);
-   $conex = mysqli_connect("localhost","root","","stockmaker_inv");
+    $page_title = 'Historial';
+    require_once('includes/load.php');
+    page_require_level(1);
+    $conex = mysqli_connect("localhost","root","","stockmaker_inv");
 ?>
 <?php include_once('layouts/header.php'); ?>
+
 <div class="row">
 
     <div class="col-md-12">
-      <div class="panel panel-default">
-     
-       
-
-        <table class="table table-bordered">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <table class="table table-bordered">
                     <thead>
                         <tr>
                             
@@ -51,7 +51,7 @@
                         
                     </tbody>
                 </table>
-                </div>
-
-  
-  <?php include_once('layouts/footer.php'); ?>
+            </div>
+        </div>
+    </div>
+</div>

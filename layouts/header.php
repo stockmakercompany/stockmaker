@@ -19,7 +19,7 @@
   <?php  if ($session->isUserLoggedIn(true)): ?>
     <header id="header">
       <div class="logo pull-left" > 
-      <a href="home.php" title="Menu">
+      <a id="menus"href="home.php" title="Menu">
                      <i class="glyphicon glyphicon-home" st></i>
                       Menu</a>  </div>
       <div class="header-content">

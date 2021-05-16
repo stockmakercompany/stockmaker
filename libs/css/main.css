@@ -43,7 +43,10 @@ body{
 .bg-red{
   background-color: #FF7857;
 }
+#menus{
+  color: #fff;
 
+}
 
 #header {
   position: fixed;

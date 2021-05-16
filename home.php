@@ -22,7 +22,7 @@
 		<br>
 		<div class="contenedor" id="tres">
 			<img class="icons" src="pictures/icon3.png">
-			<a href="scanner-qr.php" class="texto">Escaner QR</a>
+			<a href="scanner_qr.php" class="texto">Escaner QR</a>
 		</div>
 	
 		<div class="contenedor" id="cuatro">

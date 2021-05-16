@@ -1,10 +1,11 @@
 <?php
-    $page_title = 'Historial';
-    require_once('includes/load.php');
-    // Checkin What level user has permission to view this page
-    page_require_level(2);
-    $conex = mysqli_connect("localhost","root","","stockmaker_inv");
+  $page_title = 'Lista de productos';
+  require_once('includes/load.php');
+  // Checkin What level user has permission to view this page
+   page_require_level(3);
+   $conex = mysqli_connect("localhost","root","","stockmaker_inv");
 ?>
+
 <?php include_once('layouts/header.php'); ?>
 <html lang="en">
 <head>
@@ -24,15 +25,13 @@
             crossorigin="anonymous"></script>
     <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
 </head>
-
-<body>
 <div class="row">
+     <div class="col-md-12">
+       <?php echo display_msg($msg); ?>
+     </div>
     <div class="col-md-12">
-        <?php echo display_msg($msg); ?>
-    </div>
-    <div class="col-md-12">
-        <div class="panel panel-default">
-        <div class="panel-body">
+      <div class="panel panel-default">
+      <div class="panel-body">
                 <div class="et_pb_code_inner"></div>
                 
                 <div class="et_pb_module et_pb_code et_pb_code_1">
@@ -94,9 +93,13 @@
                         </div>
                     </div>
                 </div>
-            </div>
+
+        <div class="panel-body">
+      
         </div>
+      </div>
     </div>
-</div>
-</body>
+  </div>
+  </body>
 </html>
+  <?php include_once('layouts/footer.php'); ?>

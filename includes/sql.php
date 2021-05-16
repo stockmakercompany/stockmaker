@@ -158,8 +158,6 @@ function tableExists($table){
             $session->msg('d','Por favor Iniciar sesión...');
             redirect('index.php', false);
 
-
-
      elseif($current_user['user_level'] <= (int)$require_level):
               return true;
       else:
