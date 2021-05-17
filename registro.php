@@ -1,29 +1,31 @@
 <!--
     Registro.
-        TODO: implementar confirmación de contraseña
 -->
+<?php
+  $page_title = 'Lista de productos';
+  require_once('includes/load.php');
+?>
+<?php include_once('layouts/header.php'); ?>
 <?php
     require './includes/database_2.php'; // carga la conexión con la base de datos
 
     $message = '';
     
     if(!empty($_POST['name'])
-        && !empty($_POST['username'])
-        && !empty($_POST['password'])       // Si las los campos formulario se han rellanado y 
-        && !empty($_POST['user_level'])     // enviado se ejectua el script.
-        && !empty($_POST['image'])) {       
+        && !empty($_POST['username'])       // Si las los campos formulario se han rellanado y 
+        && !empty($_POST['password'])       // enviado se ejectua el script.
+        && !empty($_POST['user_level'])) {       
             // guarda una sentencia SQL con un insert del usuario nuevo
-        $sql = "INSERT INTO usuarios (name, username, password ,user_level, image, status, last_login)
-                VALUES (:username, :name, :password, :user_level, :image, '1', NOW())";
+        $sql = "INSERT INTO users (name, username, password ,user_level, image, status, last_login)
+                VALUES (:name, :username, :password, :user_level, :image, '1', '')";
         $stmt = $conn->prepare($sql); // prepara la sentencia en el conector
         $stmt->bindParam(':name', $_POST['name']);
         $stmt->bindParam(':username', $_POST['username']); 
         $password = password_hash($_POST['password'], PASSWORD_BCRYPT); // Encripta la contraseña.
         $stmt->bindParam(':password', $password);               // Asigna los campos del formulario a 
-        $stmt->bindParam(':user_level', $_POST['user_level']);  // las variables y Asigna las 
-        $stmt->bindParam(':apellidos', $_POST['apellidos']);    // variables a los campos de la
-        $stmt->bindParam(':image', $_POST['image']);            // sentencia.
-
+        $stmt->bindParam(':user_level', $_POST['user_level']);  // las variables y Asigna las    
+        $stmt->bindParam(':image', $_POST['image']);            // variables a los campos de la
+                                                                // sentencia.
         if ($stmt->execute()) {
             $message = 'Successfully created new user'; // se guarda mensaje exitoso
         } else {
@@ -32,31 +34,46 @@
 
     }
 ?>
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Registro</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body id="body">
     <?php if(!empty($message)): ?>
         <p><?= $message ?></p> <!-- cuando envía el formulario de registro muestra el mensaje -->
     <?php endif; ?>
-
-    <h1>Registro</h1>
+    <div class="login-page">
+    <h1>Registro</h1><br><br>
     <!-- formulario de registro -->
-    <form action="signup.php" method="post">
-        <input class="reg-input" type="text" name="name" placeholder="Nombre">
-        <input class="reg-input" type="text" name="username" placeholder="Nombre de usuario">
-        <input class="reg-input" type="password" name="password" placeholder="Contraseña">
-        <select class="reg-input" type="number" name="user_level" placeholder="Nivel del usuario">
-            <option value=1 selected>Admin User</option>
-            <option value=2>Special User</option>
-            <option value=3>Default User</option>
-        </select>
-        <input class="reg-input" type="file" name="image">
-        <input class="reg-submit" type="submit" value="Send">
+    <form action="registro.php" method="post" class="clearfix">
+    <div class="form-group">
+    <label for="username" class="control-label">Nombre:</label>
+    <input class="reg-input" type="text" name="name" placeholder="Nombre"><br><br>
+    </div>
+    <div class="form-group">
+    <label for="username" class="control-label">Usuario:</label>
+    <input class="reg-input" type="text" name="username" placeholder="Nombre de usuario"><br><br>
+    </div>   
+    <div class="form-group">
+    <label for="username" class="control-label">Contraseña:</label>
+    <input class="reg-input" type="password" name="password" placeholder="Contraseña"><br><br>
+    </div>       
+    <div class="form-group">
+    <label for="username" class="control-label">Roles:</label>
+    <select class="reg-input" type="number" name="user_level" placeholder="Nivel del usuario"><br><br>
+            <option value="1" selected>Administrado</option>
+            <option value="2">Encargado</option>
+            <option value="3">Empleado</option>
+        </select><br>
+    </div>  
+    <div class="form-group">
+    <input class="reg-input" type="file" name="image"><br><br><br>
+        <input type="submit" value="Registrar" class="btn btn-primary">
+        <a href="index.php" class="btn btn-primary" style="float:rigth">Login</a>
+        </div>
+
     </form>
+    </div>
 </body>
-</html>
+<?php include_once('layouts/footer.php'); ?>

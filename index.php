@@ -21,6 +21,8 @@
         </div>
         <div class="form-group">
                 <button type="submit" class="btn btn-info  pull-right">Entrar</button>
+                <a href="registro.php" class="btn btn-primary" style="float:left">Registrarte</a>
+                <br>
         </div>
     </form>
 </div>
