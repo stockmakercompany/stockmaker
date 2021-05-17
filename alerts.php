@@ -3,7 +3,7 @@
   require_once('includes/load.php');
   // Checkin What level user has permission to view this page
    page_require_level(3);
-  $products = join_product_table();
+  $products = join_product_tablealert();
 ?>
 <?php include_once('layouts/header.php'); ?>
 <div class="row">
@@ -13,18 +13,11 @@
     <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-heading clearfix" action="" method="get">
-        <input type="text" name="busqueda">
-        <input type="submit" name="enviar" value="Buscar">
-         <div class="pull-right">
-           <a href="add_product.php" class="btn btn-primary">Agregar producto</a>
-           <br>
-           <br>
-           <a href="categorie.php" class="btn btn-primary">Pocisicion</a>
-         </div>
+          <h1 aling="center">Alertas</h1>
         </div>
 
         <div class="panel-body">
-          <table class="table table-bordered">
+          <table class="table table-bordered" >
             <thead>
               <tr>
                 
@@ -50,8 +43,8 @@
                 <?php endif; ?>
                 </td>
                 <td class="text-center"> <?php echo remove_junk($product['categorie']); ?></td>
-                <td class="text-center"> <?php echo remove_junk($product['quantity']); ?></td>
-                <td class="text-center"> <?php echo remove_junk($product['buy_price']); ?></td>
+                <td class="text-center" style="background-color: red; color: #fff;"> <?php echo remove_junk($product['quantity']); ?></td>
+                <td class="text-center" > <?php echo remove_junk($product['buy_price']); ?></td>
                 <td class="text-center"> <?php echo remove_junk($product['sale_price']); ?></td>
                 <td class="text-center"> <?php echo read_date($product['date']); ?></td>
                 <td class="text-center">
