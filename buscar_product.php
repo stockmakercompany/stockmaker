@@ -1,32 +1,20 @@
 <?php
   $page_title = 'Inventario';
   require_once('includes/load.php');
-  // Checkin What level user has permission to view this page
    page_require_level(3);
-   $conex = mysqli_connect("localhost","root","","stockmaker_inv");
 ?>
 <?php include_once('layouts/header.php'); ?>
 <div class="row">
      <div class="col-md-12">
        <?php echo display_msg($msg); ?>
      </div>
-     <?php 
-
-
-        $busqueda = strtolower ($_REQUEST['busqueda']);
-          if(empty($busqueda))
-        {
-              header("location:product.php");
-        }
-
-        
-     ?>
     <div class="col-md-12">
       <div class="panel panel-default">
-        <div class="panel-heading clearfix" action="" method="get">
-        <form action="buscar_product.php" method="get" class="form_search">
-          <input type="text" name="busqueda" id ="busqueda" placeholder="Buscar" value=" <?php echo $busqueda ?>">
+        <div class="panel-heading clearfix">
+        <form action="buscar_product.php" method="POST" class="form_search">
+          <input type="text" name="buscar"  placeholder="Buscar">
           <input type="submit" value="Buscar" class="btn_search">
+        </form>
         </form>
          <div class="pull-right">
            <a href="add_product.php" class="btn btn-primary">Agregar producto</a>
@@ -36,19 +24,15 @@
          </div>
         </div>
         <?php
-              $sql_registe= mysqli_query($conection,"SELECT COUNT(*) as total_product FROM products 
-                                                      WHERE (name LIKE'%$busqueda%')");
 
-              $query = mysqli_query($conection,"SELECT id,name,quantity,buy_price,sale_price,media_id,pdate,c.name 
-              WHERE (p.name LIKE'%$busqueda%')");
 
               ?>
 
         <div class="panel-body">
-          <table class="table table-bordered">
-
-            <thead>
+        <table class="table table-bordered">
+        <thead>
               <tr>
+                
                 <th> Nombre del producto </th>
                 <th> Imagen</th>
                 <th class="text-center" style="width: 10%;"> Pocición </th>
@@ -58,26 +42,30 @@
                 <th class="text-center" style="width: 10%;"> Agregado </th>
                 <th class="text-center" style="width: 100px;"> Acciones </th>
               </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                     include 'read.php';
 
-            </thead>
-            <tbody>
-              <?php foreach ($products as $product):?>
-              <tr>
-              <td> <?php echo remove_junk($product['name']); ?></td>
-                <td>
-                  <?php if($product['media_id'] === '0'): ?>
+                     while($row= mysqli_fetch_array($sql_query)){  ?>
+
+                     <tr>
+                     <td><?= $row['name']?></td>
+                     <td>
+                     <?php if($row['media_id'] === '0'): ?>
                     <img class="img-avatar img-circle" src="uploads/products/no_image.jpg" alt="">
                   <?php else: ?>
-                  <img class="img-avatar img-circle" src="uploads/products/<?php echo $product['image']; ?>" alt="">
+                  <img class="img-avatar img-circle" src="uploads/products/<?php echo $row['image']; ?>" alt="">
                 <?php endif; ?>
-                </td>
-                <td class="text-center"> <?php echo remove_junk($product['categorie']); ?></td>
-                <td class="text-center"> <?php echo remove_junk($product['quantity']); ?></td>
-                <td class="text-center"> <?php echo remove_junk($product['buy_price']); ?></td>
-                <td class="text-center"> <?php echo remove_junk($product['sale_price']); ?></td>
-                <td class="text-center"> <?php echo read_date($product['date']); ?></td>
-                <td class="text-center">
-                  <div class="btn-group">
+
+                     </td>
+                     <td class="text-center"><?= $row['categorie']?></td>
+                     <td class="text-center"><?= $row['quantity']?></td>
+                     <td class="text-center"><?= $row['buy_price']?></td>
+                     <td class="text-center"><?= $row['sale_price']?></td>
+                     <td class="text-center"><?= $row['date']?></td>
+                     <td class="text-center">
+                     <div class="btn-group">
                     <a href="edit_product.php?id=<?php echo (int)$product['id'];?>" class="btn btn-info btn-xs"  title="Editar" data-toggle="tooltip">
                       <span class="glyphicon glyphicon-edit"></span>
                     </a>
@@ -85,11 +73,20 @@
                       <span class="glyphicon glyphicon-trash"></span>
                     </a>
                   </div>
-                </td>
+                     </td>
+                     </tr>   
+
+                     <?php }?>
+
+                  
+
+              <tr>
+              
               </tr>
-             <?php endforeach; ?>
-            </tbody>
-          </table>
+
+
+                    </tbody>
+                </table>
         </div>
       </div>
     </div>

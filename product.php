@@ -1,7 +1,6 @@
 <?php
   $page_title = 'Lista de productos';
   require_once('includes/load.php');
-  // Checkin What level user has permission to view this page
    page_require_level(3);
   $products = join_product_table();
 ?>
@@ -13,9 +12,9 @@
      </div>
     <div class="col-md-12">
       <div class="panel panel-default">
-        <div class="panel-heading clearfix" action="" method="get">
-        <form action="buscar_product.php" method="get" class="form_search">
-          <input type="text" name="busqueda" id ="busqueda" placeholder="Buscar">
+        <div class="panel-heading clearfix" action="" method="POST">
+        <form action="buscar_product.php" method="POST" class="form_search">
+          <input type="text" name="buscar"  placeholder="Buscar">
           <input type="submit" value="Buscar" class="btn_search">
         </form>
          <div class="pull-right">

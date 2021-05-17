@@ -13,6 +13,7 @@
        
 
         <table class="table table-bordered">
+        <h1 align="center">Historial</h1>
                     <thead>
                         <tr>
                             
