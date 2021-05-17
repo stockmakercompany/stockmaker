@@ -40,18 +40,15 @@
         <div class="panel-heading">
           <strong>
             <span class="glyphicon glyphicon-th"></span>
-            <span>Agregar Posición</span>
+            <span>Agregar categoría</span>
          </strong>
         </div>
         <div class="panel-body">
           <form method="post" action="categorie.php">
             <div class="form-group">
-                <input type="text" class="form-control" name="categorie-name" placeholder="Nombre de la posición" required>
+                <input type="text" class="form-control" name="categorie-name" placeholder="Nombre de la categoría" required>
             </div>
-            <button type="submit" name="add_cat" class="btn btn-primary">Agregar Sitio</button>
-            <br>
-            <br>
-            <a href="product.php" class="btn btn-primary">Invetario</a>
+            <button type="submit" name="add_cat" class="btn btn-primary">Agregar categoría</button>
         </form>
         </div>
       </div>
@@ -61,7 +58,7 @@
       <div class="panel-heading">
         <strong>
           <span class="glyphicon glyphicon-th"></span>
-          <span>Lista de Posiciones</span>
+          <span>Lista de categorías</span>
        </strong>
       </div>
         <div class="panel-body">
@@ -69,7 +66,7 @@
             <thead>
                 <tr>
                     <th class="text-center" style="width: 50px;">#</th>
-                    <th>Posición</th>
+                    <th>Categorías</th>
                     <th class="text-center" style="width: 100px;">Acciones</th>
                 </tr>
             </thead>

@@ -34,7 +34,7 @@ INSERT INTO `categories` (`id`, `name`) VALUES
 
 
 CREATE TABLE `media` (
-  `id` int(11) UNSIGNED NOT NULL,
+  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `file_name` varchar(255) NOT NULL,
   `file_type` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -53,7 +53,7 @@ INSERT INTO `media` (`id`, `file_name`, `file_type`) VALUES
 --
 
 CREATE TABLE `products` (
-  `id` int(11) UNSIGNED NOT NULL,
+  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `quantity` varchar(50) DEFAULT NULL,
   `buy_price` decimal(25,2) DEFAULT NULL,

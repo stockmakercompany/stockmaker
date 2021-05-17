@@ -15,7 +15,7 @@ if(!$product){
 ?>
 <?php
  if(isset($_POST['product'])){
-    $req_fields = array('product-title','product-categorie','product-quantity','buying-price', 'saleing-price' );
+    $req_fields = array('product-title','product-categorie','product-quantity','buying-price', 'saleing-price' ,'product-minquantity');
     validate_fields($req_fields);
 
    if(empty($errors)){
@@ -24,14 +24,15 @@ if(!$product){
        $p_qty   = remove_junk($db->escape($_POST['product-quantity']));
        $p_buy   = remove_junk($db->escape($_POST['buying-price']));
        $p_sale  = remove_junk($db->escape($_POST['saleing-price']));
+       $p_mqty  = remove_junk($db->escape($_POST['product-minquantity']));
        if (is_null($_POST['product-photo']) || $_POST['product-photo'] === "") {
          $media_id = '0';
        } else {
          $media_id = remove_junk($db->escape($_POST['product-photo']));
        }
        $query   = "UPDATE products SET";
-       $query  .=" name ='{$p_name}', quantity ='{$p_qty}',";
-       $query  .=" buy_price ='{$p_buy}', sale_price ='{$p_sale}', categorie_id ='{$p_cat}',media_id='{$media_id}'";
+       $query  .=" name ='{$p_name}', quantity ='{$p_qty}', ";
+       $query  .=" buy_price ='{$p_buy}', sale_price ='{$p_sale}', categorie_id ='{$p_cat}',media_id='{$media_id}',minquantity ='{$p_mqty}'";
        $query  .=" WHERE id ='{$product['id']}'";
        $result = $db->query($query);
                if($result && $db->affected_rows() === 1){
@@ -106,9 +107,14 @@ if(!$product){
                     <div class="input-group">
                       <span class="input-group-addon">
                        <i class="glyphicon glyphicon-shopping-cart"></i>
-                      </span>
+                     
                       <input type="number" class="form-control" name="product-quantity" value="<?php echo remove_junk($product['quantity']); ?>">
+                      <input type="number" class="form-control" name="product-minquantity" value="<?php echo remove_junk($product['minquantity']); ?>">
                    </div>
+
+
+
+                  
                   </div>
                  </div>
                  <div class="col-md-4">
@@ -138,6 +144,7 @@ if(!$product){
                </div>
               </div>
               <button type="submit" name="product" class="btn btn-danger">Actualizar</button>
+              <a href="product.php" class="btn btn-primary" style="float:cemter">Inventario</a>
               <a href="generador_qr.php" class="btn btn-primary" style="float:right">Generar QR</a>
           </form>
          </div>
