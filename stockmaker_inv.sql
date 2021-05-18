@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-05-2021 a las 13:57:19
--- Versión del servidor: 10.4.13-MariaDB
--- Versión de PHP: 7.4.7
+-- Tiempo de generación: 18-05-2021 a las 21:32:32
+-- Versión del servidor: 10.4.17-MariaDB
+-- Versión de PHP: 8.0.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -37,10 +37,42 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`) VALUES
-(1, 'Armario-1'),
-(2, 'Armario-2'),
-(3, 'Armario-3'),
-(4, 'Armario-3 Alamacen');
+(1, 'Alamacen_Armario 1'),
+(4, 'Alamacen_Armario 2'),
+(2, 'Tienda-Aramario1 '),
+(3, 'Tienda-Aramario2 ');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `historial`
+--
+
+CREATE TABLE `historial` (
+  `id` smallint(11) NOT NULL,
+  `product_name` varchar(255) NOT NULL,
+  `fecha_hora` datetime NOT NULL,
+  `tipo_accion` enum('insert','update','delete') NOT NULL,
+  `quantity` smallint(6) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `historial`
+--
+
+INSERT INTO `historial` (`id`, `product_name`, `fecha_hora`, `tipo_accion`, `quantity`) VALUES
+(0, 'd', '2021-05-18 21:18:00', 'insert', 21),
+(0, 'd', '2021-05-18 21:24:22', 'update', 0),
+(0, 'Filtro de gasolina', '2021-05-18 21:24:34', 'delete', 100),
+(0, 'Tornillos', '2021-05-18 21:28:02', 'update', 679),
+(0, 'Cadena Bici', '2021-05-18 21:28:31', 'insert', 21),
+(0, 'Arendelas', '2021-05-18 21:29:17', 'insert', 150),
+(0, 'Cable Azul 100 m', '2021-05-18 21:30:24', 'insert', 12),
+(0, 'Cable Azul 100 m', '2021-05-18 21:30:32', 'update', 0),
+(0, 'Arendelas', '2021-05-18 21:30:47', 'update', 0),
+(0, 'Cadena Bici', '2021-05-18 21:30:52', 'update', 0),
+(0, 'Cable Tierra 100 m', '2021-05-18 21:31:23', 'insert', 21),
+(0, 'Cable Tierra 100 m', '2021-05-18 21:31:31', 'update', 0);
 
 -- --------------------------------------------------------
 
@@ -59,12 +91,11 @@ CREATE TABLE `media` (
 --
 
 INSERT INTO `media` (`id`, `file_name`, `file_type`) VALUES
-(1, 'filter.jpg', 'image/jpeg'),
 (2, 'arandelas.jpg', 'image/jpeg'),
-(3, 'images.jpg', 'image/jpeg'),
-(4, 'imagen_2021-05-16_202219.png', 'image/png'),
-(5, 'descarga.jpg', 'image/jpeg'),
-(6, 'tornillos.jpg', 'image/jpeg');
+(3, 'cableA.jpg', 'image/jpeg'),
+(4, 'tornillos.jpg', 'image/jpeg'),
+(5, 'cablet.jpg', 'image/jpeg'),
+(6, 'CADENA+BICICLETA+10+VELOCIDADES.jpg', 'image/jpeg');
 
 -- --------------------------------------------------------
 
@@ -89,8 +120,11 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `quantity`, `minquantity`, `buy_price`, `sale_price`, `categorie_id`, `media_id`, `date`) VALUES
-(4, 'Tornillos', '700', '400', '21.00', '31.00', 1, 6, '2021-05-18 13:56:06'),
-(5, 'Cable Tierra', '12', '6', '21.00', '21.00', 2, 5, '2021-05-18 13:56:25');
+(2, 'Tornillos', '700', '100', '12.00', '15.00', 2, 4, '2021-05-18 21:18:00'),
+(3, 'Cadena Bici', '21', '21', '12.00', '25.00', 4, 6, '2021-05-18 21:28:31'),
+(4, 'Arendelas', '150', '155', '12.00', '19.00', 1, 2, '2021-05-18 21:29:17'),
+(5, 'Cable Azul 100 m', '12', '21', '31.00', '42.00', 4, 3, '2021-05-18 21:30:24'),
+(6, 'Cable Tierra 100 m', '21', '12', '15.00', '21.00', 4, 5, '2021-05-18 21:31:23');
 
 --
 -- Disparadores `products`
@@ -133,9 +167,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `user_level`, `image`, `status`, `last_login`) VALUES
-(1, 'Guillermo_Admin', 'Guillermo_Admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'io84ob2t1.PNG', 1, '2017-06-16 07:11:11'),
-(2, 'SergiParpal', 'Sergi_Encargado', '1b27e0ed61ce6f20050b2a5184c17d14d9d280ec', 2, 'no_image.jpg', 1, '2017-06-16 07:11:26'),
-(3, 'David_Iglesias', 'David_Empleado', '45da7a7db046f90cdf48f94c6b55b978a47ab925', 3, 'no_image.jpg', 1, '2017-06-16 07:11:03');
+(1, 'Guillermo_Administrador', 'Guillermo_Admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'xrsenwz21.PNG', 1, '2021-05-18 21:22:31'),
+(2, 'Sergi_Parpal', 'Sergi_encargado', 'b36fff89e3b60ca80e12a16d70289d58f6a50f31', 2, 'no_image.jpg', 1, '2021-05-18 21:22:19'),
+(3, 'David_Iglesias', 'David_empleado', 'f9f011a553550aef31a8ee2690e1d1b5f261c9ff', 3, 'no_image.jpg', 1, '2021-05-18 21:22:03');
 
 -- --------------------------------------------------------
 
@@ -155,9 +189,9 @@ CREATE TABLE `user_groups` (
 --
 
 INSERT INTO `user_groups` (`id`, `group_name`, `group_level`, `group_status`) VALUES
-(1, 'Admin', 1, 1),
+(1, 'Administrador', 1, 1),
 (2, 'Encargado', 2, 1),
-(3, 'Empelado', 3, 1);
+(3, 'Empleado', 3, 1);
 
 --
 -- Índices para tablas volcadas
@@ -221,7 +255,7 @@ ALTER TABLE `media`
 -- AUTO_INCREMENT de la tabla `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `users`

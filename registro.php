@@ -6,6 +6,34 @@
   require_once('includes/load.php');
 ?>
 <?php include_once('layouts/header.php'); ?>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-image: url(./pictures/bg-login.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+    .page {
+      display: inline;
+    }
+    .login-page{
+      padding: 20px;
+      background-color: rgb(136 135 135 / 55%)
+    }
+    @media screen and (max-width: 460px) {
+      .page{
+        display: inline;
+      }
+      .login-page{
+        padding-bottom: 20px;
+        background-color: rgb(249 249 249 / 0%);
+        width: 90%;
+        border: none;
+      }
+    }
+  </style>
 <?php
     require './includes/database_2.php'; // carga la conexión con la base de datos
 
