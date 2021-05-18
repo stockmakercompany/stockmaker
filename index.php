@@ -1,51 +1,58 @@
-<!--
-    Página inicial.
-    Desde aquí se puede ir al login (iniciar sesión) o al registro.
--->
 <?php
-    session_start();
-
-    require 'database.php'; // carga la conexión con la base de datos
-
-    if(isset($_SESSION['user_id'])) {
-        $records = $conn->prepare(
-            // select del usuario en dónde id igual a 'user_id' (':id')
-            'SELECT id, username, nombre, apellidos, email, rol, password FROM usuarios WHERE id = :id'
-        ); 
-        $records->bindParam(':id', $_SESSION['user_id']);
-        $records->execute();
-        $results = $records->fetch(PDO::FETCH_ASSOC);
-
-        $user = null;
-
-        if(count($results) > 0) { // Si el resultado no está vacío
-            $user = $results;     // se asigna a user.
-        }
-    }
+  ob_start();
+  require_once('includes/load.php');
+  if($session->isUserLoggedIn(true)) { redirect('home.php', false);}
 ?>
-<!DOCTYPE html>
-<html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <title>StockMaker</title>
-        <link rel="preconnect" href="https://fonts.gstatic.com"> <!-- estilo de fuente -->
-        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="assets/css/style.css"> <!-- hoja de estilo general -->
-    </head>
-    <body>
-
-        <?php require 'partials/header.php' ?> <!-- header embedido -->
-
-        <?php if(!empty($user)): ?> <!-- si la variable user no está vacía ha logueado -->
-            <!-- esta parte es lo que se muestra cuando estás logueado -->
-            <br>Bienvenido, <?= $user['username'] ?>
-            <br>Has iniciado sesión
-            <a href="logout.php">Logout</a> <!-- este enlace conduce al logout.php que te desloguea
-        <?php else: ?> <!-- si no está logueado se muestra la página inicial -->
-            <!-- esta parte es lo que se muestra cuando NO estás logueado -->
-            <h1>Porfavor inicia sesión o regístrate</h1>
-            <a href="login.php">Iniciar de sesión</a> o <!-- Desde aquí puedes ir al login -->
-            <a href="signup.php">Registrarse</a>        <!-- o al registro. -->
-            <?php endif; ?>
-    </body>
-</html>
+<?php include_once('layouts/header.php'); ?>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-image: url(./pictures/bg-login.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+    .page {
+      display: inline;
+    }
+    .login-page{
+      padding: 20px;
+      background-color: rgb(136 135 135 / 55%)
+    }
+    @media screen and (max-width: 460px) {
+      .page{
+        display: inline;
+      }
+      .login-page{
+        padding-bottom: 20px;
+        background-color: rgb(249 249 249 / 0%);
+        width: 90%;
+        border: none;
+      }
+    }
+  </style>
+</head>
+<div class="login-page">
+    <div class="text-center">
+       <h1>Bienvenido</h1>
+       <p>Iniciar sesión </p>
+     </div>
+     <?php echo display_msg($msg); ?>
+      <form method="post" action="auth.php" class="clearfix">
+        <div class="form-group">
+              <label for="username" class="control-label">Usario</label>
+              <input type="name" class="form-control" name="username" placeholder="Usario">
+        </div>
+        <div class="form-group">
+            <label for="Password" class="control-label">Contraseña</label>
+            <input type="password" name= "password" class="form-control" placeholder="Contraseña">
+        </div>
+        <div class="form-group">
+                <button type="submit" class="btn btn-info  pull-right">Entrar</button>
+                <a href="registro.php" class="btn btn-primary" style="float:left">Registrarte</a>
+                <br>
+        </div>
+    </form>
+</div>
+<?php include_once('layouts/footer.php'); ?>
