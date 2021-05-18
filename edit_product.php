@@ -15,16 +15,16 @@ if(!$product){
 ?>
 <?php
  if(isset($_POST['product'])){
-    $req_fields = array('product-title','product-categorie','product-quantity','buying-price', 'saleing-price' ,'product-minquantity');
+    $req_fields = array('product-title','product-categorie','product-quantity','product-minquantity','buying-price', 'saleing-price' );
     validate_fields($req_fields);
 
    if(empty($errors)){
        $p_name  = remove_junk($db->escape($_POST['product-title']));
        $p_cat   = (int)$_POST['product-categorie'];
        $p_qty   = remove_junk($db->escape($_POST['product-quantity']));
+       $p_mqty  = remove_junk($db->escape($_POST['product-minquantity']));
        $p_buy   = remove_junk($db->escape($_POST['buying-price']));
        $p_sale  = remove_junk($db->escape($_POST['saleing-price']));
-       $p_mqty  = remove_junk($db->escape($_POST['product-minquantity']));
        if (is_null($_POST['product-photo']) || $_POST['product-photo'] === "") {
          $media_id = '0';
        } else {
