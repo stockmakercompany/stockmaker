@@ -4,6 +4,20 @@
   if (!$session->isUserLoggedIn(true)) { redirect('home.php', false);}
 ?>
 <?php include_once('layouts/header.php'); ?>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .page {
+            display: block;
+        }
+            @media screen and (max-width: 400px) {
+            table {
+                overflow-x: auto;
+				display: inline-block;
+            }
+        }
+  </style>
+</head>
 <div class="row">
   <div class="col-md-12">
    

@@ -46,6 +46,20 @@
 
 ?>
 <?php include_once('layouts/header.php'); ?>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .page {
+            display: inline;
+        }
+            @media screen and (max-width: 400px) {
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+  </style>
+</head>
 <div class="row">
   <div class="col-md-12">
     <?php echo display_msg($msg); ?>
